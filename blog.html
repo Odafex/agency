@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Agency Insights | Latest Web Development & Marketing Trends</title>
+    <meta name="description" content="Expert articles on web development, app creation, and digital marketing strategies from Odafex Agency team of professionals">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://odafex.com/blog" />
+    
+    <!-- OG Tags for Social Sharing -->
+    <meta property="og:title" content="Digital Agency Insights | Odafex Agency">
+    <meta property="og:description" content="Expert articles on web development and digital marketing">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://odafex.com/blog">
+    <meta property="og:image" content="https://odafex.com/images/blog-og-image.jpg">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Blog",
+      "name": "Odafex Digital Insights",
+      "description": "Expert digital marketing and development advice",
+      "url": "https://odafex.com/blog",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Odafex"
+      }
+    }
+    </script>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Custom Styles */
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.3);
+        }
+        .reading-time:after {
+            content: " min read";
+        }
+        .category-tag {
+            transition: all 0.2s ease;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-100 font-['Inter']">
+    <!-- Navigation (Same as your main site) -->
+         <nav class="fixed w-full z-50 backdrop-blur-md bg-gray-900/80 border-b border-gray-800">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <a href="index.html" class="flex items-center">
+                    <img src="images/logo.svg" alt="Website developer Logo" class="h-8 w-auto">
+                    <span class="ml-3 text-xl font-bold font-space-grotesk">Odafex</span>
+                </a>
+                <a href="index.html" class="text-blue-400 hover:text-blue-300 font-medium">
+                    ← Back to Home
+                </a>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Blog Header -->
+    <header class="pt-32 pb-16 bg-gradient-to-b from-blue-900/20 to-gray-900">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4 font-['Space_Grotesk']">
+                Digital <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600">Insights</span>
+            </h1>
+            <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+                Expert articles on web development, app creation, and digital marketing strategies
+            </p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-12">
+        <!-- Featured Article (AEO Optimization) -->
+        <section class="mb-20">
+            <div class="bg-gray-800 rounded-2xl overflow-hidden border border-gray-700">
+                <div class="md:flex">
+                    <div class="md:w-1/2">
+                        <img src="images/service1.png" alt="Web Development Trends 2023" 
+                             class="w-full h-full object-cover" loading="lazy">
+                    </div>
+                    <div class="md:w-1/2 p-8">
+                        <div class="flex items-center mb-4">
+                            <span class="text-blue-400 text-sm font-medium">WEB DEVELOPMENT</span>
+                            <span class="text-gray-500 mx-2">•</span>
+                            <span class="text-gray-400 text-sm reading-time">5</span>
+                        </div>
+                        <h2 class="text-2xl md:text-3xl font-bold mb-4 font-['Space_Grotesk']">
+                            <a href="/blog/web-development-trends-2023" class="hover:text-blue-400 transition">
+                                Top 7 Web Development Trends to Watch in 2023
+                            </a>
+                        </h2>
+                        <p class="text-gray-400 mb-6">
+                            Discover the most impactful technologies shaping modern web development this year, 
+                            from progressive web apps to serverless architectures...
+                        </p>
+                        <div class="flex items-center">
+                            <img src="images/author-john.png" alt="Christian Odafe" class="w-10 h-10 rounded-full mr-3">
+                            <div>
+                                <p class="text-sm font-medium">Christian Odafe</p>
+                                <p class="text-gray-500 text-xs">Lead Developer</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Grid -->
+        <section>
+            <div class="flex flex-wrap justify-between items-center mb-8">
+                <h2 class="text-2xl font-bold font-['Space_Grotesk']">Latest Articles</h2>
+                <div class="flex space-x-2">
+                    <button class="category-tag px-4 py-2 rounded-full bg-blue-600 text-white text-sm">
+                        All Topics
+                    </button>
+                    <button class="category-tag px-4 py-2 rounded-full bg-gray-700 hover:bg-gray-600 text-sm">
+                        Development
+                    </button>
+                    <button class="category-tag px-4 py-2 rounded-full bg-gray-700 hover:bg-gray-600 text-sm">
+                        Marketing
+                    </button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Article 1 -->
+                <article class="article-card bg-gray-800 rounded-xl overflow-hidden border border-gray-700 transition duration-300">
+                    <a href="/blog/pwa-vs-native-apps">
+                        <img src="images/article-pwa.png" alt="PWA vs Native Apps Comparison" 
+                             class="w-full h-48 object-cover" loading="lazy">
+                    </a>
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <span class="text-purple-400 text-xs font-medium">MOBILE DEVELOPMENT</span>
+                            <span class="text-gray-500 mx-2">•</span>
+                            <span class="text-gray-400 text-xs reading-time">4</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 font-['Space_Grotesk']">
+                            <a href="/blog/pwa-vs-native-apps" class="hover:text-blue-400 transition">
+                                PWA vs Native Apps: When to Choose Which
+                            </a>
+                        </h3>
+                        <p class="text-gray-400 text-sm mb-4">
+                            A comprehensive comparison of progressive web apps and native mobile applications...
+                        </p>
+                        <a href="/blog/pwa-vs-native-apps" class="text-blue-400 hover:text-blue-300 text-sm font-medium inline-flex items-center">
+                            Read more <i class="fas fa-arrow-right ml-1 text-xs"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Article 2 -->
+                <article class="article-card bg-gray-800 rounded-xl overflow-hidden border border-gray-700 transition duration-300">
+                    <a href="/blog/seo-2023">
+                        <img src="images/article-seo.jpg" alt="SEO Strategies 2023" 
+                             class="w-full h-48 object-cover" loading="lazy">
+                    </a>
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <span class="text-green-400 text-xs font-medium">SEO</span>
+                            <span class="text-gray-500 mx-2">•</span>
+                            <span class="text-gray-400 text-xs reading-time">7</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 font-['Space_Grotesk']">
+                            <a href="/blog/seo-2023" class="hover:text-blue-400 transition">
+                                SEO Strategies That Dominated 2023
+                            </a>
+                        </h3>
+                        <p class="text-gray-400 text-sm mb-4">
+                            Discover the most effective SEO techniques that outperformed competitors this year...
+                        </p>
+                        <a href="/blog/seo-2023" class="text-blue-400 hover:text-blue-300 text-sm font-medium inline-flex items-center">
+                            Read more <i class="fas fa-arrow-right ml-1 text-xs"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Article 3 -->
+                <article class="article-card bg-gray-800 rounded-xl overflow-hidden border border-gray-700 transition duration-300">
+                    <a href="/blog/ux-conversion">
+                        <img src="images/article-01.png" alt="UX Design Impact on Conversion" 
+                             class="w-full h-48 object-cover" loading="lazy">
+                    </a>
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <span class="text-yellow-400 text-xs font-medium">WEBSITE</span>
+                            <span class="text-gray-500 mx-2">•</span>
+                            <span class="text-gray-400 text-xs reading-time">5</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 font-['Space_Grotesk']">
+                            <a href="/blog/ux-conversion" class="hover:text-blue-400 transition">
+                                Do this before you build your business a website
+                            </a>
+                        </h3>
+                        <p class="text-gray-400 text-sm mb-4">
+                            Before you invest in building your business website, here’s what you need to do to ensure your website actually drives results...
+                        </p>
+                        <a href="/blog/website-advice" class="text-blue-400 hover:text-blue-300 text-sm font-medium inline-flex items-center">
+                            Read more <i class="fas fa-arrow-right ml-1 text-xs"></i>
+                        </a>
+                    </div>
+                </article>
+        
+            </div>
+
+            <!-- Pagination -->
+            <div class="flex justify-center mt-3">
+                <nav class="flex items-center space-x-2">
+                    <a href="#" class="px-4 py-2 border border-gray-700 rounded-lg text-gray-400 hover:bg-gray-800">&laquo;</a>
+                    <a href="#" class="px-4 py-2 border border-blue-600 bg-blue-600/20 rounded-lg text-blue-400">1</a>
+                    <a href="#" class="px-4 py-2 border border-gray-700 rounded-lg text-gray-400 hover:bg-gray-800">2</a>
+                    <a href="#" class="px-4 py-2 border border-gray-700 rounded-lg text-gray-400 hover:bg-gray-800">3</a>
+                    <a href="#" class="px-4 py-2 border border-gray-700 rounded-lg text-gray-400 hover:bg-gray-800">&raquo;</a>
+                </nav>
+            </div>
+        </section>
+
+        <!-- Newsletter CTA -->
+        <section class="mt-20 bg-gradient-to-r from-blue-900/30 to-purple-900/30 border border-gray-700 rounded-xl p-8 md:p-12">
+            <div class="max-w-3xl mx-auto text-center">
+                <h2 class="text-2xl md:text-3xl font-bold mb-4 font-['Space_Grotesk']">Get Digital Insights Directly</h2>
+                <p class="text-gray-400 mb-8 max-w-2xl mx-auto">
+                    Subscribe to our newsletter for exclusive content, industry trends, and agency updates
+                </p>
+                <form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+                    <input type="email" placeholder="Your email address" 
+                           class="flex-grow px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500">
+                    <button type="submit" class="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition">
+                        Subscribe
+                    </button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer (Same as your main site) -->
+    <footer class="bg-gray-900 border-t border-gray-800 py-12">
+        <!-- Your existing footer code -->
+    </footer>
+
+    <script>
+        // Category filtering functionality
+        document.querySelectorAll('.category-tag').forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all buttons
+                document.querySelectorAll('.category-tag').forEach(btn => {
+                    btn.classList.remove('bg-blue-600', 'text-white');
+                    btn.classList.add('bg-gray-700', 'hover:bg-gray-600');
+                });
+                
+                // Add active class to clicked button
+                this.classList.add('bg-blue-600', 'text-white');
+                this.classList.remove('bg-gray-700', 'hover:bg-gray-600');
+                
+                // Filter functionality would go here
+                // You would typically filter articles based on category
+            });
+        });
+        
+        // Calculate reading time (demo - would be dynamic in real implementation)
+        document.querySelectorAll('.reading-time').forEach(el => {
+            // In a real implementation, you would calculate this from the article content
+            el.textContent = Math.floor(Math.random() * 8) + 3;
+        });
+    </script>
+</body>
+</html>

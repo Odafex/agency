@@ -1,0 +1,1452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Odafex | Development & Marketing Agency</title>
+<!-- Favicon -->
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+<link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <meta name="description" content="We build stunning websites, powerful apps, and results-driven marketing campaigns for modern businesses.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    
+    <!-- Glide.js for testimonials -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.5.0/css/glide.core.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.5.0/glide.min.js"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <style>
+        /* Custom Styles */
+        body {
+            scroll-behavior: smooth;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Hero Background Animation */
+        .animate-pan {
+            animation: pan 30s linear infinite;
+        }
+
+        @keyframes pan {
+            0% {
+                transform: scale(1) translate(0, 0);
+            }
+            50% {
+                transform: scale(1.1) translate(5%, 5%);
+            }
+            100% {
+                transform: scale(1) translate(0, 0);
+            }
+        }
+
+        /* Testimonial Slider */
+        .testimonial-slider .glide__slide {
+            opacity: 0.5;
+            transition: opacity 0.3s ease;
+        }
+
+        .testimonial-slider .glide__slide.glide__slide--active {
+            opacity: 1;
+        }
+
+        /* Form Input Animation */
+        .form-input {
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -5px rgba(59, 130, 246, 0.3);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1a202c;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #4a5568;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #2d3748;
+        }
+
+        /* GSAP Animation Classes */
+        .gsap-fade-in {
+            opacity: 0;
+        }
+
+        .gsap-slide-up {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .gsap-slide-left {
+            opacity: 0;
+            transform: translateX(-50px);
+        }
+
+        .gsap-slide-right {
+            opacity: 0;
+            transform: translateX(50px);
+        }
+
+        /* Mobile Menu Animation */
+        .mobile-menu-enter {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+
+        .mobile-menu-enter-active {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-exit {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .mobile-menu-exit-active {
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: all 0.3s ease;
+        }
+
+        /* Custom font for headings */
+        .font-space-grotesk {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        /* 3D Image Container */
+.portfolio-showcase {
+    perspective: 2000px;
+    transform-style: preserve-3d;
+}
+
+.portfolio-image {
+    transition: all 0.5s cubic-bezier(0.17, 0.67, 0.21, 0.99);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    border-radius: 12px;
+    overflow: hidden;
+    transform-style: preserve-3d;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.main-image {
+    width: 90%;
+    height: auto;
+    z-index: 10;
+}
+
+.secondary-image {
+    position: absolute;
+    z-index: 5;
+    width: 40%;
+    border: 3px solid rgba(255,255,255,0.2);
+}
+
+.top-left {
+    top: -8%;
+    left: -8%;
+    transform: rotate(-5deg);
+}
+
+.bottom-right {
+    bottom: -8%;
+    right: -5%;
+    transform: rotate(5deg);
+}
+
+/* Hover effects */
+.portfolio-container:hover .main-image {
+    transform: rotateY(5deg) rotateX(2deg) translateZ(20px);
+}
+
+.portfolio-container:hover .top-left {
+    transform: rotate(-8deg) translateX(-10px) translateY(-10px) translateZ(10px);
+}
+
+.portfolio-container:hover .bottom-right {
+    transform: rotate(8deg) translateX(10px) translateY(10px) translateZ(10px);
+}
+
+/* Button animations */
+.btn-hover-effect {
+    transition: all 0.3s ease;
+}
+/* Add these to your existing style tag */
+html, body {
+    overflow-x: hidden;
+    width: 100%;
+}
+
+.container {
+    max-width: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+/* Fix for horizontal scroll caused by animations */
+section {
+    overflow: hidden;
+}
+
+/* Fix for testimonial slider overflow */
+.testimonial-slider {
+    overflow: hidden;
+    padding: 0 1rem;
+}
+
+/* Fix for pricing cards on mobile */
+@media (max-width: 768px) {
+    .pricing-card {
+        transform: none !important;
+    }
+}
+
+/* Success Modal Animations */
+#success-modal {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+#success-modal:not(.hidden) {
+    opacity: 1;
+    pointer-events: auto;
+}
+#success-modal .modal-content {
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+}
+#success-modal:not(.hidden) .modal-content {
+    transform: translateY(0);
+}
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-100">
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 backdrop-blur-md">
+        <div class="container mx-auto px-6 py-3">
+            <div class="flex justify-between items-center bg-gray-800/80 rounded-full px-6 py-3 border border-gray-700 shadow-lg transition-all duration-300">
+                <!-- Logo - Replace with your logo -->
+                <div class="flex items-center">
+                    <img src="images/logo.svg" alt="Odafex agency logo" class="h-8 w-auto">
+                    <span class="ml-3 text-xl font-bold font-space-grotesk">Odafex</span>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-gray-300 hover:text-white transition">Home</a>
+                    <a href="#services" class="text-gray-300 hover:text-white transition">Services</a>
+                    <a href="#about" class="text-gray-300 hover:text-white transition">About</a>
+                    <a href="#portfolio" class="text-gray-300 hover:text-white transition">Work</a>
+                    <a href="#pricing" class="text-gray-300 hover:text-white transition">Pricing</a>
+                    <a href="#contact" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full transition transform hover:scale-105">
+                        Get In Touch
+                    </a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-300 hover:text-white focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-800/95 backdrop-blur-md border-t border-gray-700">
+            <div class="container mx-auto px-6 py-4">
+                <div class="flex flex-col space-y-4">
+                    <a href="#home" class="text-gray-300 hover:text-white transition">Home</a>
+                    <a href="#services" class="text-gray-300 hover:text-white transition">Services</a>
+                    <a href="#about" class="text-gray-300 hover:text-white transition">About</a>
+                    <a href="#portfolio" class="text-gray-300 hover:text-white transition">Work</a>
+                    <a href="#contact" class="text-gray-300 hover:text-white transition">Contact</a>
+                    <a href="#contact" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full text-center transition">
+                        Get Started
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="py-20 px-6 lg:py-32 bg-gray-900 text-white">
+    <div class="container mx-auto">
+        <div class="flex flex-col lg:flex-row items-center gap-12">
+            <!-- Left Column - Text Content -->
+            <div class="lg:w-1/2">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 font-space-grotesk leading-tight">
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600">Crafting Beautiful</span><br>
+                    & Functional Websites
+                </h1>
+                <p class="text-lg md:text-xl text-gray-300 mb-8 max-w-lg">
+                    We design and develop stunning, high-performance websites that drive results. 
+                    Focusing on modern web design, e-commerce solutions, and custom web applications.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#pricing" class="btn-hover-effect bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 rounded-full text-lg font-semibold text-center shadow-lg transition-all transform hover:scale-105">
+                        Hire Me
+                    </a>
+                    <a href="blog.html" class="btn-hover-effect border-2 border-gray-600 hover:border-white text-white px-8 py-4 rounded-full text-lg font-semibold text-center hover:bg-white/10 transition">
+                        Check Our Blog
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Right Column - 3D Image Showcase -->
+            <div class="lg:w-1/2 relative mt-12 lg:mt-0">
+                <div class="portfolio-showcase">
+                    <div class="portfolio-container relative">
+                        <!-- Main Center Image -->
+                        <img src="images/project1.png" 
+                             alt="Website Portfolio" 
+                             class="portfolio-image main-image">
+                        
+                        <!-- Top Left Image -->
+                        <img src="images/project2.png" 
+                             alt="Website Project 1" 
+                             class="portfolio-image secondary-image top-left">
+                        
+                        <!-- Bottom Right Image -->
+                        <img src="images/project3.png" 
+                             alt="Website Project 2" 
+                             class="portfolio-image secondary-image bottom-right">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20 animate-bounce">
+            <a href="#services" class="text-gray-300 hover:text-white">
+                <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                </svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-gray-900">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="text-blue-400 font-semibold">WHAT WE OFFER</span>
+                <h2 class="text-4xl md:text-5xl font-bold mt-2 mb-4 font-space-grotesk">Our <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600">Services</span></h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">
+                    Comprehensive digital solutions tailored to your business needs. We deliver quality and innovation in every project.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Service 1 - Replace icon, image, and text -->
+                <div class="service-card bg-gray-800 rounded-xl overflow-hidden border border-gray-700 hover:border-blue-500 transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/10">
+                    <div class="p-8">
+                        <div class="w-14 h-14 bg-blue-600/20 rounded-lg flex items-center justify-center mb-6">
+                            <i class="fas fa-code text-2xl text-blue-400"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-3 font-space-grotesk">Website Development</h3>
+                        <p class="text-gray-400 mb-6">
+                            Custom, responsive websites designed to convert visitors into customers. Built with the latest technologies for optimal performance.
+                        </p>
+                        <a href="#" class="text-blue-400 hover:text-blue-300 font-medium inline-flex items-center">
+                            Learn more
+                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="h-48 overflow-hidden">
+                        <img src="images/service1.png" alt="Website Development" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                    </div>
+                </div>
+                
+                <!-- Service 2 - Replace icon, image, and text -->
+                <div class="service-card bg-gray-800 rounded-xl overflow-hidden border border-gray-700 hover:border-purple-500 transition-all duration-300 hover:shadow-xl hover:shadow-purple-500/10">
+                    <div class="p-8">
+                        <div class="w-14 h-14 bg-purple-600/20 rounded-lg flex items-center justify-center mb-6">
+                            <i class="fas fa-mobile-alt text-2xl text-purple-400"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-3 font-space-grotesk">App Development</h3>
+                        <p class="text-gray-400 mb-6">
+                            Native and cross-platform mobile applications that provide seamless user experiences and drive engagement.
+                        </p>
+                        <a href="#" class="text-purple-400 hover:text-purple-300 font-medium inline-flex items-center">
+                            Learn more
+                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="h-48 overflow-hidden">
+                        <img src="images/service2.jpg" alt="App Development" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                    </div>
+                </div>
+                
+                <!-- Service 3 - Replace icon, image, and text -->
+                <div class="service-card bg-gray-800 rounded-xl overflow-hidden border border-gray-700 hover:border-green-500 transition-all duration-300 hover:shadow-xl hover:shadow-green-500/10">
+                    <div class="p-8">
+                        <div class="w-14 h-14 bg-green-600/20 rounded-lg flex items-center justify-center mb-6">
+                            <i class="fas fa-chart-line text-2xl text-green-400"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-3 font-space-grotesk">Marketing Services</h3>
+                        <p class="text-gray-400 mb-6">
+                            Data-driven marketing strategies that increase brand awareness, generate leads, and boost your online presence.
+                        </p>
+                        <a href="#" class="text-green-400 hover:text-green-300 font-medium inline-flex items-center">
+                            Learn more
+                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="h-48 overflow-hidden">
+                        <img src="images/service3.jpg" alt="Marketing Services" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-gray-900 border-t border-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row items-center">
+                <div class="lg:w-1/2 mb-12 lg:mb-0 lg:pr-12">
+                    <span class="text-blue-400 font-semibold">WHO WE ARE</span>
+                    <h2 class="text-4xl md:text-5xl font-bold mt-2 mb-6 font-space-grotesk">Crafting Digital <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600">Experiences</span></h2>
+                    <p class="text-gray-400 mb-6">
+                        At Odafex Agency, we believe in the power of online leverage to transform businesses. Founded in 2021, our team of passionate developers, designers, and marketers work together to deliver exceptional digital solutions.
+                    </p>
+                    <p class="text-gray-400 mb-8">
+                        Our mission is to help businesses thrive in the digital landscape by creating innovative, user-centric products that drive results. We combine creativity with technical expertise to deliver solutions that make an impact.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-blue-600/20 rounded-full flex items-center justify-center mr-3">
+                                <i class="fas fa-check text-blue-400"></i>
+                            </div>
+                            <span class="font-medium">5+ Years Experience</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-purple-600/20 rounded-full flex items-center justify-center mr-3">
+                                <i class="fas fa-check text-purple-400"></i>
+                            </div>
+                            <span class="font-medium">50+ Projects</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-green-600/20 rounded-full flex items-center justify-center mr-3">
+                                <i class="fas fa-check text-green-400"></i>
+                            </div>
+                            <span class="font-medium">100% Satisfaction</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:w-1/2 relative">
+                    <!-- Replace with your about image -->
+                    <img src="images/about.jpg" alt="About Odafex Agency" class="rounded-xl shadow-2xl border border-gray-700 w-full">
+                    <div class="absolute -bottom-6 -left-6 w-32 h-32 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl -z-10"></div>
+                    <div class="absolute -top-6 -right-6 w-32 h-32 bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl -z-10"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-20 bg-gray-900 border-t border-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="text-blue-400 font-semibold">OUR WORK</span>
+                <h2 class="text-4xl md:text-5xl font-bold mt-2 mb-4 font-space-grotesk">Featured <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600">Projects</span></h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">
+                    Explore our recent work and see how we've helped businesses like yours achieve their digital goals.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 - Replace image, title, description, and link -->
+                <div class="portfolio-item bg-gray-800 rounded-xl overflow-hidden border border-gray-700 hover:border-blue-500 transition-all duration-300 group">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="images/pfolio1.png" alt="E-commerce Platform" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">E-commerce Platform</h3>
+                                <p class="text-gray-300 mb-4">Increased conversions by 220% with a complete redesign and performance optimization.</p>
+                                <a href="#" class="text-blue-400 hover:text-blue-300 font-medium inline-flex items-center">
+                                    View Case Study
+                                    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6 group-hover:hidden">
+                        <h3 class="text-xl font-bold mb-2">E-commerce Platform</h3>
+                        <p class="text-gray-400">Increased conversions by 220%</p>
+                    </div>
+                </div>
+                
+                <!-- Project 2 - Replace image, title, description, and link -->
+                <div class="portfolio-item bg-gray-800 rounded-xl overflow-hidden border border-gray-700 hover:border-purple-500 transition-all duration-300 group">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="images/pfolio2.png" alt="Fitness App" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Fitness App</h3>
+                                <p class="text-gray-300 mb-4">Cross-platform fitness application with 2,000+ downloads in the first month.</p>
+                                <a href="#" class="text-purple-400 hover:text-purple-300 font-medium inline-flex items-center">
+                                    View Case Study
+                                    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6 group-hover:hidden">
+                        <h3 class="text-xl font-bold mb-2">Fitness App</h3>
+                        <p class="text-gray-400">50,000+ downloads in first month</p>
+                    </div>
+                </div>
+                
+                <!-- Project 3 - Replace image, title, description, and link -->
+                <div class="portfolio-item bg-gray-800 rounded-xl overflow-hidden border border-gray-700 hover:border-green-500 transition-all duration-300 group">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="images/pfolio3.png" alt="Marketing Campaign" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Marketing Campaign</h3>
+                                <p class="text-gray-300 mb-4">Generated 500+ qualified leads in 30 days through targeted digital marketing.</p>
+                                <a href="#" class="text-green-400 hover:text-green-300 font-medium inline-flex items-center">
+                                    View Case Study
+                                    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6 group-hover:hidden">
+                        <h3 class="text-xl font-bold mb-2">Marketing Campaign</h3>
+                        <p class="text-gray-400">500+ qualified leads in 30 days</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="portfolio.html" class="inline-flex items-center px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full font-medium hover:from-blue-700 hover:to-purple-700 transition-all transform hover:scale-105 shadow-lg">
+                    View All Projects
+                    <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-20 bg-gray-900 border-t border-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="text-blue-400 font-semibold">CLIENT FEEDBACK</span>
+                <h2 class="text-4xl md:text-5xl font-bold mt-2 mb-4 font-space-grotesk">What Our <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600">Clients Say</span></h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">
+                    Don't just take our word for it. Here's what our clients have to say about working with us.
+                </p>
+            </div>
+            
+            <div class="testimonial-slider relative">
+                <div class="glide__track" data-glide-el="track">
+                    <div class="glide__slides">
+                        <!-- Testimonial 1 - Replace content -->
+                        <div class="glide__slide">
+                            <div class="bg-gray-800 rounded-xl p-8 border border-gray-700">
+                                <div class="flex items-center mb-6">
+                                    <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+                                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Client" class="w-full h-full object-cover">
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold">Michael Johnson</h4>
+                                        <p class="text-gray-400 text-sm">CEO, TechStart Inc.</p>
+                                    </div>
+                                </div>
+                                <p class="text-gray-300 mb-6">
+                                    "Odafex Digital transformed our online presence completely. Their website development team delivered beyond our expectations, resulting in a 150% increase in leads within the first month."
+                                </p>
+                                <div class="flex text-yellow-400">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Testimonial 2 - Replace content -->
+                        <div class="glide__slide">
+                            <div class="bg-gray-800 rounded-xl p-8 border border-gray-700">
+                                <div class="flex items-center mb-6">
+                                    <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+                                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Client" class="w-full h-full object-cover">
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold">Sarah Williams</h4>
+                                        <p class="text-gray-400 text-sm">Marketing Director, Bloom Cosmetics</p>
+                                    </div>
+                                </div>
+                                <p class="text-gray-300 mb-6">
+                                    "The marketing campaign Odafex Agency created for us exceeded all KPIs. Their strategic approach and creative execution helped us achieve a 300% ROI in just three months."
+                                </p>
+                                <div class="flex text-yellow-400">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Testimonial 3 - Replace content -->
+                        <div class="glide__slide">
+                            <div class="bg-gray-800 rounded-xl p-8 border border-gray-700">
+                                <div class="flex items-center mb-6">
+                                    <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+                                        <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Client" class="w-full h-full object-cover">
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold">David Chen</h4>
+                                        <p class="text-gray-400 text-sm">Founder, FitTrack</p>
+                                    </div>
+                                </div>
+                                <p class="text-gray-300 mb-6">
+                                    "Our app developed by Odafex Agency has been a game-changer for our business. The user experience is flawless, and we've seen retention rates double since launch."
+                                </p>
+                                <div class="flex text-yellow-400">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Testimonial 4 - Replace content -->
+                        <div class="glide__slide">
+                            <div class="bg-gray-800 rounded-xl p-8 border border-gray-700">
+                                <div class="flex items-center mb-6">
+                                    <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+                                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Client" class="w-full h-full object-cover">
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold">Emily Rodriguez</h4>
+                                        <p class="text-gray-400 text-sm">Director of Digital, UrbanEats</p>
+                                    </div>
+                                </div>
+                                <p class="text-gray-300 mb-6">
+                                    "Working with Odafex agency has been a pleasure from start to finish. Their team is professional, responsive, and truly understands how to translate business goals into digital solutions."
+                                </p>
+                                <div class="flex text-yellow-400">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="glide__bullets" data-glide-el="controls[nav]">
+                    <button class="glide__bullet" data-glide-dir="=0"></button>
+                    <button class="glide__bullet" data-glide-dir="=1"></button>
+                    <button class="glide__bullet" data-glide-dir="=2"></button>
+                    <button class="glide__bullet" data-glide-dir="=3"></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-20 bg-gray-900 border-t border-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="text-blue-400 font-semibold">PRICING PLANS</span>
+                <h2 class="text-4xl md:text-5xl font-bold mt-2 mb-4 font-space-grotesk">Simple, Transparent <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600">Pricing</span></h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">
+                    Choose the plan that fits your needs. All plans come with our 100% satisfaction guarantee.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <!-- Basic Plan - Replace features and pricing -->
+                <div class="pricing-card bg-gray-800 rounded-xl p-8 border border-gray-700 hover:border-blue-500 transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/10">
+                    <h3 class="text-2xl font-bold mb-4 font-space-grotesk">Starter</h3>
+                    <p class="text-gray-400 mb-6">Perfect for small businesses getting started</p>
+                    <div class="mb-8">
+                        <span class="text-4xl font-bold">$1,999</span>
+                        <span class="text-gray-400">/project</span>
+                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-blue-400 mr-3"></i>
+                            <span>5 Page Website</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-blue-400 mr-3"></i>
+                            <span>Mobile Responsive</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-blue-400 mr-3"></i>
+                            <span>Basic SEO Setup</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-blue-400 mr-3"></i>
+                            <span>Contact Form</span>
+                        </li>
+                        <li class="flex items-center text-gray-500">
+                            <i class="fas fa-times text-gray-500 mr-3"></i>
+                            <span>No E-commerce</span>
+                        </li>
+                    </ul>
+                    <a href="#contact" class="pricing-btn block w-full text-center bg-gray-700 hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-medium transition">
+                        Get Started
+                    </a>
+                </div>
+                
+                <!-- Popular Plan - Replace features and pricing -->
+                <div class="pricing-card bg-gray-800 rounded-xl p-8 border-2 border-blue-500 transform scale-105 z-10 shadow-xl shadow-blue-500/20">
+                    <div class="absolute top-0 right-0 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-lg">
+                        MOST POPULAR
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 font-space-grotesk">Business</h3>
+                    <p class="text-gray-400 mb-6">Ideal for growing businesses with more complex needs</p>
+                    <div class="mb-8">
+                        <span class="text-4xl font-bold">$4,999</span>
+                        <span class="text-gray-400">/project</span>
+                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-blue-400 mr-3"></i>
+                            <span>Up to 15 Page Website</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-blue-400 mr-3"></i>
+                            <span>Advanced Mobile Optimization</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-blue-400 mr-3"></i>
+                            <span>SEO & Content Strategy</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-blue-400 mr-3"></i>
+                            <span>Basic E-commerce</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-blue-400 mr-3"></i>
+                            <span>CMS Integration</span>
+                        </li>
+                    </ul>
+                    <a href="#contact" class="pricing-btn block w-full text-center bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-6 py-3 rounded-lg font-medium transition">
+                        Get Started
+                    </a>
+                </div>
+                
+                <!-- Enterprise Plan - Replace features and pricing -->
+                <div class="pricing-card bg-gray-800 rounded-xl p-8 border border-gray-700 hover:border-purple-500 transition-all duration-300 hover:shadow-xl hover:shadow-purple-500/10">
+                    <h3 class="text-2xl font-bold mb-4 font-space-grotesk">Enterprise</h3>
+                    <p class="text-gray-400 mb-6">Custom solutions for large-scale projects</p>
+                    <div class="mb-8">
+                        <span class="text-4xl font-bold">$9,999+</span>
+                        <span class="text-gray-400">/project</span>
+                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-blue-400 mr-3"></i>
+                            <span>Custom Page Count</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-blue-400 mr-3"></i>
+                            <span>Advanced E-commerce</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-blue-400 mr-3"></i>
+                            <span>Enterprise SEO</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-blue-400 mr-3"></i>
+                            <span>Custom Integrations</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-blue-400 mr-3"></i>
+                            <span>Priority Support</span>
+                        </li>
+                    </ul>
+                    <a href="#contact" class="pricing-btn block w-full text-center bg-gray-700 hover:bg-purple-600 text-white px-6 py-3 rounded-lg font-medium transition">
+                        Get Started
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gray-900 border-t border-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="text-blue-400 font-semibold">GET IN TOUCH</span>
+                <h2 class="text-4xl md:text-5xl font-bold mt-2 mb-4 font-space-grotesk">Let's <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600">Work Together</span></h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">
+                    Ready to take your business online presence to the next level? Contact us today for a free consultation.
+                </p>
+            </div>
+            
+            <div class="flex flex-col lg:flex-row gap-12 max-w-6xl mx-auto">
+                <div class="lg:w-1/2">
+<form id="contact-form" class="space-y-6" action="https://formsubmit.co/odafex.tech@gmail.com" method="POST">
+    <!-- FormSubmit.co Hidden Fields -->
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_next" value="https://odafex.com/thank-you.html">
+    <input type="text" name="_honey" style="display:none">
+    
+    <!-- Existing Form Fields (Keep current fields) -->
+    <div>
+        <label for="name" class="block text-gray-300 mb-2">Your Name</label>
+        <input type="text" id="name" name="name" class="form-input w-full px-6 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500" required>
+    </div>
+    <!-- Include your other fields (email, service, message) here -->
+     <div>
+        <label for="email" class="block text-gray-300 mb-2">Email Address</label>
+        <input type="email" id="email" name="email" required class="form-input w-full px-6 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500">
+    </div>
+    <div>
+        <label for="service" class="block text-gray-300 mb-2">Service Needed</label>
+        <select id="service" name="service" class="form-input w-full px-6 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500">
+            <option value="">Select a service</option>
+            <option value="web-development">Website Development</option>
+            <option value="app-development">App Development</option>
+            <option value="marketing">Marketing Services</option>
+            <option value="other">Other</option>
+        </select>
+    </div>
+    <div>
+        <label for="message" class="block text-gray-300 mb-2">Your Message</label>
+        <textarea id="message" name="message" rows="5" required class="form-input w-full px-6 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500"></textarea>
+    </div>
+    <button type="submit" id="submit-btn" class="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all transform hover:scale-[1.02] shadow-lg">
+        Send Message
+    </button>
+</form>
+                </div>
+                <div class="lg:w-1/2">
+                    <div class="bg-gray-800 rounded-xl p-8 h-full border border-gray-700">
+                        <h3 class="text-2xl font-bold mb-6 font-space-grotesk">Contact Information</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 bg-blue-600/20 rounded-lg flex items-center justify-center mr-4 mt-1">
+                                    <i class="fas fa-map-marker-alt text-blue-400"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">Our Office</h4>
+                                    <p class="text-gray-400">148 Industrial, Port Harcourt, ZIP 500101 </p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 bg-purple-600/20 rounded-lg flex items-center justify-center mr-4 mt-1">
+                                    <i class="fas fa-envelope text-purple-400"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">Email Us</h4>
+                                    <p class="text-gray-400">odafex.tech@gmail.com</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 bg-green-600/20 rounded-lg flex items-center justify-center mr-4 mt-1">
+                                    <i class="fas fa-phone-alt text-green-400"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">Call Us</h4>
+                                    <p class="text-gray-400">+234 (807) 667-4837</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-12">
+                            <h4 class="font-bold mb-4">Follow Us</h4>
+                            <div class="flex space-x-4">
+                                <a href="https://www.facebook.com/share/1HmabCf5fZ/" class="w-10 h-10 bg-gray-700 hover:bg-blue-600 rounded-full flex items-center justify-center transition">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="https://x.com/Odax_crypt?t=5PN-zWn24w52DCgr8R6VdQ&s=09" class="w-10 h-10 bg-gray-700 hover:bg-blue-400 rounded-full flex items-center justify-center transition">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="https://www.instagram.com/odafex_crypt?igsh=cng1eDFpa2Y5a2Vp" class="w-10 h-10 bg-gray-700 hover:bg-pink-600 rounded-full flex items-center justify-center transition">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="https://www.linkedin.com/in/christian-umukoro-91bb81233?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" class="w-10 h-10 bg-gray-700 hover:bg-blue-700 rounded-full flex items-center justify-center transition">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 border-t border-gray-800 py-12">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center mb-6 md:mb-0">
+                    <img src="images/logo.svg" alt="Odafex Agency Logo" class="h-8 w-auto">
+                    <span class="ml-3 text-xl font-bold font-space-grotesk">Odafex</span>
+                </div>
+                <div class="flex flex-wrap justify-center gap-6 mb-6 md:mb-0">
+                    <a href="#home" class="text-gray-400 hover:text-white transition">Home</a>
+                    <a href="#services" class="text-gray-400 hover:text-white transition">Services</a>
+                    <a href="#about" class="text-gray-400 hover:text-white transition">About</a>
+                    <a href="#portfolio" class="text-gray-400 hover:text-white transition">Work</a>
+                    <a href="#contact" class="text-gray-400 hover:text-white transition">Contact</a>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500">
+                <p>&copy; 2021 Odafex Agency. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Menu Toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            mobileMenuButton.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Close mobile menu when clicking on a link
+            const mobileMenuLinks = document.querySelectorAll('#mobile-menu a');
+            mobileMenuLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // GSAP Animations
+            gsap.registerPlugin(ScrollTrigger);
+
+            // Hero Section Animation
+            gsap.from("#hero-bg", {
+                scale: 1.2,
+                duration: 2,
+                ease: "power2.out"
+            });
+
+            gsap.from("#cta-button", {
+                y: 0,
+                opacity: 50,
+                duration: 1,
+                delay: 0.5,
+                ease: "back.out(1.7)"
+            });
+
+            // Section Animations
+            const animateOnScroll = (selector, options = {}) => {
+                gsap.utils.toArray(selector).forEach(element => {
+                    gsap.from(element, {
+                        scrollTrigger: {
+                            trigger: element,
+                            start: "top 80%",
+                            toggleActions: "play none none none"
+                        },
+                        opacity: 0,
+                        y: 50,
+                        duration: 1,
+                        ease: "power2.out",
+                        ...options
+                    });
+                });
+            };
+
+            // Animate service cards with stagger
+            gsap.utils.toArray(".service-card").forEach((card, i) => {
+                gsap.from(card, {
+                    scrollTrigger: {
+                        trigger: card,
+                        start: "top 80%",
+                        toggleActions: "play none none none"
+                    },
+                    opacity: 0,
+                    y: 50,
+                    duration: 0.8,
+                    delay: i * 0.1,
+                    ease: "power2.out"
+                });
+            });
+
+            // Animate portfolio items
+            gsap.utils.toArray(".portfolio-item").forEach((item, i) => {
+                gsap.from(item, {
+                    scrollTrigger: {
+                        trigger: item,
+                        start: "top 80%",
+                        toggleActions: "play none none none"
+                    },
+                    opacity: 0,
+                    y: 50,
+                    duration: 0.8,
+                    delay: i * 0.15,
+                    ease: "power2.out"
+                });
+            });
+
+            // Animate pricing cards
+            gsap.utils.toArray(".pricing-card").forEach((card, i) => {
+                gsap.from(card, {
+                    scrollTrigger: {
+                        trigger: card,
+                        start: "top 80%",
+                        toggleActions: "play none none none"
+                    },
+                    opacity: 0,
+                    y: 50,
+                    duration: 0.8,
+                    delay: i * 0.1,
+                    ease: "power2.out"
+                });
+            });
+
+            // Form input animations
+            const formInputs = document.querySelectorAll('.form-input');
+            formInputs.forEach(input => {
+                input.addEventListener('focus', () => {
+                    gsap.to(input, {
+                        scale: 1.02,
+                        boxShadow: '0 10px 20px -5px rgba(59, 130, 246, 0.3)',
+                        duration: 0.3
+                    });
+                });
+                
+                input.addEventListener('blur', () => {
+                    gsap.to(input, {
+                        scale: 1,
+                        boxShadow: 'none',
+                        duration: 0.3
+                    });
+                });
+            });
+
+            // Testimonial Slider
+            if (document.querySelector('.testimonial-slider')) {
+                new Glide('.testimonial-slider', {
+                    type: 'carousel',
+                    perView: 1,
+                    autoplay: 5000,
+                    hoverpause: true,
+                    gap: 30,
+                    breakpoints: {
+                        768: {
+                            perView: 1
+                        }
+                    }
+                }).mount();
+            }
+
+            // Navbar scroll effect
+            window.addEventListener('scroll', function() {
+                const navbar = document.querySelector('nav');
+                if (window.scrollY > 50) {
+                    navbar.classList.add('shadow-lg');
+                    navbar.querySelector('div').classList.add('bg-gray-900/90');
+                } else {
+                    navbar.classList.remove('shadow-lg');
+                    navbar.querySelector('div').classList.remove('bg-gray-900/90');
+                }
+            });
+
+            // Initialize all animations
+            animateOnScroll('.gsap-fade-in', { opacity: 0, duration: 1 });
+            animateOnScroll('.gsap-slide-up', { y: 50, opacity: 0, duration: 1 });
+            animateOnScroll('.gsap-slide-left', { x: -50, opacity: 0, duration: 1 });
+            animateOnScroll('.gsap-slide-right', { x: 50, opacity: 0, duration: 1 });
+        });
+    </script>
+    
+<div id="payment-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm">
+    <div class="bg-gray-800 rounded-xl p-8 max-w-md w-full border border-gray-700 relative">
+        <button id="close-modal" class="absolute top-4 right-4 text-gray-400 hover:text-white">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+        
+        <h3 class="text-2xl font-bold mb-6 font-space-grotesk">Choose Payment Method</h3>
+        
+        <div class="space-y-4">
+            <div class="payment-option bg-gray-700 p-4 rounded-lg border border-gray-600 hover:border-blue-500 transition cursor-pointer" data-method="crypto">
+                <div class="flex items-center">
+                    <div class="w-10 h-10 bg-blue-600/20 rounded-full flex items-center justify-center mr-4">
+                        <i class="fab fa-bitcoin text-blue-400"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold">Pay with Crypto</h4>
+                        <p class="text-gray-400 text-sm">BTC, ETH, USDT, and other major cryptocurrencies</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="payment-option bg-gray-700 p-4 rounded-lg border border-gray-600 hover:border-purple-500 transition cursor-pointer" data-method="upwork">
+                <div class="flex items-center">
+                    <div class="w-10 h-10 bg-purple-600/20 rounded-full flex items-center justify-center mr-4">
+                        <i class="fas fa-briefcase text-purple-400"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold">Hire on Upwork</h4>
+                        <p class="text-gray-400 text-sm">Secure payment through Upwork platform</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Crypto Payment Details (hidden by default) -->
+        <div id="crypto-details" class="mt-6 hidden">
+            <h4 class="font-bold mb-3">Send Crypto Payment</h4>
+            <div class="bg-gray-900 p-4 rounded-lg mb-4">
+                <div class="flex justify-between items-center mb-2">
+                    <span class="text-gray-400">BTC Address:</span>
+                    <button class="text-blue-400 hover:text-blue-300 text-sm" onclick="copyToClipboard('bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh')">
+                        Copy
+                    </button>
+                </div>
+                <code class="text-sm break-all">bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh</code>
+                
+                <div class="flex justify-between items-center mt-4 mb-2">
+                    <span class="text-gray-400">ETH/USDT Address:</span>
+                    <button class="text-blue-400 hover:text-blue-300 text-sm" onclick="copyToClipboard('0x71C7656EC7ab88b098defB751B7401B5f6d8976F')">
+                        Copy
+                    </button>
+                </div>
+                <code class="text-sm break-all">0x71C7656EC7ab88b098defB751B7401B5f6d8976F</code>
+            </div>
+            <p class="text-gray-400 text-sm">Send exact amount in BTC, ETH or USDT. Contact us after payment.</p>
+        </div>
+        
+        <!-- Upwork Details (hidden by default) -->
+        <div id="upwork-details" class="mt-6 hidden">
+            <h4 class="font-bold mb-3">Hire on Upwork</h4>
+            <p class="text-gray-400 mb-4">Click below to hire us through Upwork's secure platform:</p>
+            <a href="https://www.upwork.com/freelancers/~YOUR_UPWORK_ID" target="_blank" class="block w-full bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-medium text-center transition">
+                Go to Upwork Profile
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Add this JavaScript -->
+<script>
+    // Payment Modal Functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        const modal = document.getElementById('payment-modal');
+        const closeModal = document.getElementById('close-modal');
+        const paymentOptions = document.querySelectorAll('.payment-option');
+        const cryptoDetails = document.getElementById('crypto-details');
+        const upworkDetails = document.getElementById('upwork-details');
+        
+        // Add click event to all pricing buttons
+        document.querySelectorAll('.pricing-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                modal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden'; // Prevent scrolling
+            });
+        });
+        
+        // Close modal
+        closeModal.addEventListener('click', function() {
+            modal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+            cryptoDetails.classList.add('hidden');
+            upworkDetails.classList.add('hidden');
+        });
+        
+        // Payment option selection
+        paymentOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                const method = this.getAttribute('data-method');
+                
+                // Hide all details first
+                cryptoDetails.classList.add('hidden');
+                upworkDetails.classList.add('hidden');
+                
+                // Show selected method details
+                if (method === 'crypto') {
+                    cryptoDetails.classList.remove('hidden');
+                } else if (method === 'upwork') {
+                    upworkDetails.classList.remove('hidden');
+                }
+            });
+        });
+        
+        // Close when clicking outside modal
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                modal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+                cryptoDetails.classList.add('hidden');
+                upworkDetails.classList.add('hidden');
+            }
+        });
+    });
+    
+    // Copy to clipboard function
+    function copyToClipboard(text) {
+        navigator.clipboard.writeText(text).then(function() {
+            alert('Address copied to clipboard!');
+        }, function(err) {
+            console.error('Could not copy text: ', err);
+        });
+    }
+ </script>
+  <!-- Success Modal -->
+<div id="success-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm">
+    <div class="modal-content bg-gray-800 rounded-xl p-8 max-w-md w-full border border-gray-700 relative text-center">
+        <div class="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-check text-green-400 text-2xl"></i>
+        </div>
+        <h3 class="text-2xl font-bold mb-2 font-['Space_Grotesk']">Message Sent!</h3>
+        <p class="text-gray-400 mb-6">Thank you for contacting us. We'll get back to you soon.</p>
+        <button id="close-modal" class="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-full transition">
+            Close
+        </button>
+    </div>
+</div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('contact-form');
+            const submitBtn = document.getElementById('submit-btn');
+            const successModal = document.getElementById('success-modal');
+            const closeModal = document.getElementById('close-modal');
+            
+            // Form submission handler
+            form.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                // Show loading state
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = `
+                    <span class="flex items-center justify-center">
+                        <i class="fas fa-spinner fa-spin mr-2"></i>
+                        Sending...
+                    </span>
+                `;
+                
+                try {
+                    // Submit form data
+                    const response = await fetch(form.action, {
+                        method: 'POST',
+                        body: new FormData(form)
+                    });
+                    
+                    if (response.ok) {
+                        // Show success modal
+                        successModal.classList.add('active');
+                        document.body.style.overflow = 'hidden';
+                        form.reset();
+                    } else {
+                        throw new Error('Form submission failed');
+                    }
+                } catch (error) {
+                    alert('There was an error sending your message. Please try again.');
+                    console.error('Error:', error);
+                } finally {
+                    // Reset button state
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Send Message';
+                }
+            });
+            
+            // Close modal handlers
+            closeModal.addEventListener('click', closeSuccessModal);
+            successModal.addEventListener('click', function(e) {
+                if (e.target === successModal) {
+                    closeSuccessModal();
+                }
+            });
+            
+            function closeSuccessModal() {
+                successModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+            
+            // Close with Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && successModal.classList.contains('active')) {
+                    closeSuccessModal();
+                }
+            });
+        });
+    </script>
+    <script>
+    // Contact Form Submission
+    document.getElementById('contact-form').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const form = e.target;
+        const submitBtn = document.getElementById('submit-btn');
+        
+        // Show loading state
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = `
+            <span class="flex items-center justify-center">
+                <i class="fas fa-spinner fa-spin mr-2"></i>
+                Sending...
+            </span>
+        `;
+        
+        try {
+            const response = await fetch(form.action, {
+                method: 'POST',
+                body: new FormData(form)
+            });
+            
+            if (response.ok) {
+                // Show success modal
+                document.getElementById('success-modal').classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+                form.reset();
+            } else {
+                throw new Error('Submission failed');
+            }
+        } catch (error) {
+            alert('Error sending message. Please try again.');
+            console.error(error);
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Send Message';
+        }
+    });
+    
+    // Close Modal Handlers
+    document.getElementById('close-modal').addEventListener('click', closeModal);
+    document.getElementById('success-modal').addEventListener('click', function(e) {
+        if (e.target === this) closeModal();
+    });
+    
+    function closeModal() {
+        document.getElementById('success-modal').classList.add('hidden');
+        document.body.style.overflow = 'auto';
+    }
+    
+    // Close with Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && !document.getElementById('success-modal').classList.contains('hidden')) {
+            closeModal();
+        }
+    });
+</script>
+<script>
+// Hero Section Parallax Effect
+const portfolioContainer = document.querySelector('.portfolio-container');
+            
+if (portfolioContainer) {
+    portfolioContainer.addEventListener('mousemove', (e) => {
+        const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
+        const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
+        
+        const mainImage = portfolioContainer.querySelector('.main-image');
+        const topLeft = portfolioContainer.querySelector('.top-left');
+        const bottomRight = portfolioContainer.querySelector('.bottom-right');
+        
+        if (mainImage) {
+            mainImage.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg) translateZ(20px)`;
+        }
+        if (topLeft) {
+            topLeft.style.transform = `rotate(-8deg) translateX(${-xAxis*0.5}px) translateY(${-yAxis*0.5}px) translateZ(10px) rotateY(${xAxis*0.3}deg) rotateX(${yAxis*0.3}deg)`;
+        }
+        if (bottomRight) {
+            bottomRight.style.transform = `rotate(8deg) translateX(${xAxis*0.5}px) translateY(${yAxis*0.5}px) translateZ(10px) rotateY(${xAxis*0.3}deg) rotateX(${yAxis*0.3}deg)`;
+        }
+    });
+    
+    // Reset on mouse leave
+    portfolioContainer.addEventListener('mouseleave', () => {
+        const images = portfolioContainer.querySelectorAll('.portfolio-image');
+        images.forEach(img => {
+            img.style.transform = img.classList.contains('main-image') 
+                ? '' 
+                : img.classList.contains('top-left') 
+                    ? 'rotate(-5deg)' 
+                    : 'rotate(5deg)';
+        });
+    });
+}
+ </script>
+</body>
+</html>

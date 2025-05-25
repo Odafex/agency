@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Portfolio | Odafex Agency</title>
+    <meta name="description" content="Explore our portfolio of digital projects and case studies">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom Styles -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #111827;
+            color: #f3f4f6;
+        }
+        .font-space-grotesk {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .project-card {
+            transition: all 0.3s ease;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .project-image {
+            transition: transform 0.5s ease;
+        }
+        .project-card:hover .project-image {
+            transform: scale(1.03);
+        }
+        .filter-btn.active {
+            background-color: #3b82f6;
+            color: white;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 backdrop-blur-md bg-gray-900/80 border-b border-gray-800">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <a href="index.html" class="flex items-center">
+                    <img src="images/logo.svg" alt="Website developer Logo" class="h-8 w-auto">
+                    <span class="ml-3 text-xl font-bold font-space-grotesk">Odafex</span>
+                </a>
+                <a href="index.html" class="text-blue-400 hover:text-blue-300 font-medium">
+                    ← Back to Home
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Portfolio Header -->
+    <header class="pt-32 pb-16">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6 font-space-grotesk">
+                Our <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600">Portfolio</span>
+            </h1>
+            <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+                Visual showcase of our latest projects and digital creations
+            </p>
+        </div>
+    </header>
+
+    <!-- Portfolio Filters -->
+    <div class="container mx-auto px-6 mb-12">
+        <div class="flex flex-wrap justify-center gap-3">
+            <button class="filter-btn px-4 py-2 rounded-full border border-gray-700 hover:bg-gray-800 transition active" data-filter="all">
+                All Projects
+            </button>
+            <button class="filter-btn px-4 py-2 rounded-full border border-gray-700 hover:bg-gray-800 transition" data-filter="web">
+                Websites
+            </button>
+            <button class="filter-btn px-4 py-2 rounded-full border border-gray-700 hover:bg-gray-800 transition" data-filter="app">
+                Mobile Apps
+            </button>
+            <button class="filter-btn px-4 py-2 rounded-full border border-gray-700 hover:bg-gray-800 transition" data-filter="dashboard">
+                Dashboards
+            </button>
+        </div>
+    </div>
+
+    <!-- Portfolio Grid -->
+    <main class="container mx-auto px-6 pb-20">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Project 1 - Replace with your project -->
+            <div class="project-card bg-gray-800 rounded-xl overflow-hidden border border-gray-700" data-category="web">
+                <div class="overflow-hidden">
+                    <img src="images/pfolio1.png" alt="E-commerce Platform UI" class="w-full h-auto project-image">
+                </div>
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-3">
+                        <h3 class="text-xl font-bold font-space-grotesk">E-commerce Platform</h3>
+                        <span class="text-xs px-2 py-1 bg-blue-600/20 text-blue-400 rounded-full">Website</span>
+                    </div>
+                    <p class="text-gray-400 text-sm">Modern online store with seamless checkout experience</p>
+                </div>
+            </div>
+
+            <!-- Project 2 - Replace with your project -->
+            <div class="project-card bg-gray-800 rounded-xl overflow-hidden border border-gray-700" data-category="app">
+                <div class="overflow-hidden">
+                    <img src="images/pfolio2.png" alt="Fitness App UI" class="w-full h-auto project-image">
+                </div>
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-3">
+                        <h3 class="text-xl font-bold font-space-grotesk">Fitness Tracker</h3>
+                        <span class="text-xs px-2 py-1 bg-purple-600/20 text-purple-400 rounded-full">Mobile App</span>
+                    </div>
+                    <p class="text-gray-400 text-sm">Cross-platform fitness application with workout plans</p>
+                </div>
+            </div>
+
+            <!-- Project 3 - Replace with your project -->
+            <div class="project-card bg-gray-800 rounded-xl overflow-hidden border border-gray-700" data-category="dashboard">
+                <div class="overflow-hidden">
+                    <img src="images/pfolio3.png" alt="Analytics Dashboard UI" class="w-full h-auto project-image">
+                </div>
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-3">
+                        <h3 class="text-xl font-bold font-space-grotesk">Analytics Dashboard</h3>
+                        <span class="text-xs px-2 py-1 bg-green-600/20 text-green-400 rounded-full">Dashboard</span>
+                    </div>
+                    <p class="text-gray-400 text-sm">Data visualization platform for business metrics</p>
+                </div>
+            </div>
+
+            <!-- Project 4 - Replace with your project -->
+            <div class="project-card bg-gray-800 rounded-xl overflow-hidden border border-gray-700" data-category="web">
+                <div class="overflow-hidden">
+                    <img src="images/project4-ui.png" alt="Corporate Website UI" class="w-full h-auto project-image">
+                </div>
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-3">
+                        <h3 class="text-xl font-bold font-space-grotesk">Corporate Website</h3>
+                        <span class="text-xs px-2 py-1 bg-blue-600/20 text-blue-400 rounded-full">Website</span>
+                    </div>
+                    <p class="text-gray-400 text-sm">Modern corporate site with CMS integration</p>
+                </div>
+            </div>
+
+            <!-- Project 5 - Replace with your project -->
+            <div class="project-card bg-gray-800 rounded-xl overflow-hidden border border-gray-700" data-category="app">
+                <div class="overflow-hidden">
+                    <img src="images/project5-ui.png" alt="Food Delivery App UI" class="w-full h-auto project-image">
+                </div>
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-3">
+                        <h3 class="text-xl font-bold font-space-grotesk">Food Delivery</h3>
+                        <span class="text-xs px-2 py-1 bg-purple-600/20 text-purple-400 rounded-full">Mobile App</span>
+                    </div>
+                    <p class="text-gray-400 text-sm">Restaurant discovery and food ordering platform</p>
+                </div>
+            </div>
+
+            <!-- Project 6 - Replace with your project -->
+            <div class="project-card bg-gray-800 rounded-xl overflow-hidden border border-gray-700" data-category="dashboard">
+                <div class="overflow-hidden">
+                    <img src="images/project6-ui.png" alt="CRM Dashboard UI" class="w-full h-auto project-image">
+                </div>
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-3">
+                        <h3 class="text-xl font-bold font-space-grotesk">CRM System</h3>
+                        <span class="text-xs px-2 py-1 bg-green-600/20 text-green-400 rounded-full">Dashboard</span>
+                    </div>
+                    <p class="text-gray-400 text-sm">Customer relationship management interface</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 border-t border-gray-800 py-12">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center mb-6 md:mb-0">
+                    <img src="images/logo.svg" alt="Odafex Agency Logo" class="h-8 w-auto">
+                    <span class="ml-3 text-xl font-bold font-space-grotesk">Odafex</span>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-behance text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-dribbble text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-linkedin-in text-xl"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500">
+                <p>&copy; 2021 Odafex Agency. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Filtering JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const projectCards = document.querySelectorAll('.project-card');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Update active button
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+
+                    const filterValue = button.getAttribute('data-filter');
+
+                    // Filter projects
+                    projectCards.forEach(card => {
+                        if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
